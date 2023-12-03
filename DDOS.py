@@ -10,7 +10,7 @@ def send_raw_tcp_frame(destination_ip, destination_port, data):
     raw_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
 
     # Set the IP header manually (you might need to adjust this based on your needs)
-    ip_header = struct.pack('!BBHHHBBH4s4s', 0x45, 0, 20 + len(data), 0, 0, 6, 0, 0, socket.inet_aton('192.168.1.1'), socket.inet_aton(destination_ip))
+    ip_header = struct.pack('!BBHHHBBH4s4s', 0x45, 0, 20 + len(data), 0, 0, 6, 0, 0, socket.inet_aton('192.168.50.1'), socket.inet_aton(destination_ip))
 
     # Combine the IP header and the data
     packet = ip_header + data
@@ -24,7 +24,7 @@ def send_frames(destination_ip, destination_port, data):
 
 if __name__ == "__main__":
     # Example usage
-    destination_ip = '192.168.2.101'
+    destination_ip = '192.168.50.201'
     destination_port = 21
 
     with open('data.txt', 'rb') as file:
